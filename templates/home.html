@@ -1,0 +1,67 @@
+{% extends 'base.html' %} {% block title %} Home {% endblock %} {% block
+content%}
+<div class="container">
+  <div class="card">
+    <div class="card-header d-flex">
+      <h2>Manage <b>User</b></h2>
+      <button
+        type="button"
+        class="btn btn-success ms-auto"
+        data-bs-toggle="modal"
+        data-bs-target="#addModal"
+      >
+        Add New User
+      </button>
+    </div>
+    <div class="card-body bg-dark">
+      <table class="table table-hover table-dark">
+        <tr>
+          <th>Id</th>
+          <th>Name</th>
+          <th>Email</th>
+          <th>Phone</th>
+          <th>Actions</th>
+        </tr>
+
+        {% for row in users %}
+        <tr>
+          <td>{{ row.id }}</td>
+          <td>{{ row.name }}</td>
+          <td>{{ row.email }}</td>
+          <td>{{ row.phone }}</td>
+          <td>
+            <a
+              href="/updateUser/{{ row.id }}"
+              class="btn btn-warning btn-xs"
+              data-bs-toggle="modal"
+              data-bs-target="#editModal{{row.id}}"
+              >Edit</a
+            >
+            <a
+              href="/deleteUser/{{ row.id }}"
+              class="btn btn-danger btn-xs"
+              onclick="return confirm('Are you sure, You want to delete this user?')"
+              >Delete</a
+            >
+          </td>
+        </tr>
+
+        {% include "modals.html" %}
+        {% endfor %}
+      </table>
+    </div>
+    {% with messages = get_flashed_messages() %}
+      {% if messages %}
+        {% for message in messages %}
+        <div class="alert alert-success position-fixed top-0 end-0 alert-dismissable" role="alert">
+          {{ message }}
+          <button type="button" class="btn btn-tranparent close" data-bs-dismiss="alert" aria-label="close">
+            <i class="fa-solid fa-xmark" aria-hidden="true"></i>
+          </button>
+        </div>
+        {% endfor %}
+      {% endif %}
+    {% endwith %}
+  </div>
+</div>
+{% endblock %}

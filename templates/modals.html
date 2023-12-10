@@ -1,0 +1,62 @@
+<div id="addModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Add User</h4>
+                <button type="button" class="btn btn-tranparent" data-bs-dismiss="modal"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+            <div class="modal-body">
+                <form action="{{ url_for('addUser') }}" method="POST">
+
+                    <div class="form-group">
+                        <label for="">Name:</label>
+                        <input type="text" class="form-control" name="name" required>
+                    </div> 
+                    <div class="form-group">
+                        <label for="">Email:</label>
+                        <input type="email" class="form-control" name="email" required>
+                    </div> 
+                    <div class="form-group">
+                        <label for="">Phone:</label>
+                        <input type="number" class="form-control" name="phone" required>
+                    </div> 
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-primary mt-2">Add User</button>
+                    </div> 
+
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="editModal{{row.id}}" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Update User</h4>
+                <button type="button" class="btn btn-tranparent" data-bs-dismiss="modal"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+            <div class="modal-body">
+                <form action="{{ url_for('updateUser') }}" method="POST">
+                    <div class="form-group">
+                        <label for="">Name:</label>
+                        <input type="hidden" name="id" value="{{ row.id }}">
+                        <input type="text" class="form-control" name="name" value="{{row.name}}" required>
+                    </div> 
+                    <div class="form-group">
+                        <label for="">Email:</label>
+                        <input type="email" class="form-control" name="email" value="{{row.email}}" required>
+                    </div> 
+                    <div class="form-group">
+                        <label for="">Phone:</label>
+                        <input type="number" class="form-control" name="phone" value="{{row.phone}}" required>
+                    </div> 
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-primary mt-2">Update User</button>
+                    </div> 
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
